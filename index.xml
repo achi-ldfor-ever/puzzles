@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa's Puzzle Day ❤️</title>
+    <style>
+        :root {
+            --pink-primary: #ff69b4;
+            --pink-secondary: #ff1493;
+            --pink-bg: #fff0f5;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            background: var(--pink-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Pixel Art Animation */
+        .maa-character {
+            width: 64px;
+            height: 64px;
+            background: url('data:image/png;base64,iVBORw0KGgo...') 0 0; /* Base64 encoded sprite sheet */
+            animation: walk 1s steps(4) infinite;
+            margin: 20px;
+        }
+
+        @keyframes walk {
+            from { background-position: 0 0; }
+            to { background-position: -256px 0; }
+        }
+
+        /* Game Selection Screen */
+        .game-select {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .game-btn {
+            background: var(--pink-primary);
+            border: 3px solid var(--pink-secondary);
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .game-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Game Containers */
+        .game-container {
+            display: none;
+            padding: 20px;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--pink-secondary);
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Sudoku Grid */
+        .sudoku-grid {
+            border: 3px solid var(--pink-primary);
+            border-collapse: collapse;
+            margin: 20px;
+        }
+
+        .sudoku-cell {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ff99cc;
+            background: #fff8fb;
+        }
+
+        /* Kakuro Grid */
+        .kakuro-grid {
+            border: 2px solid var(--pink-primary);
+            border-collapse: collapse;
+        }
+
+        .kakuro-cell {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            border: 1px solid #ff99cc;
+        }
+
+        /* Slitherlink Grid */
+        .slitherlink-grid {
+            background: #fff8fb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .slitherlink-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--pink-primary);
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Menu -->
+    <div class="game-select" id="main-menu">
+        <div class="maa-character"></div>
+        <h2>Happy Mother's Day, Maa! ❤️</h2>
+        <button class="game-btn" onclick="showGame('sudoku')">Sudoku</button>
+        <button class="game-btn" onclick="showGame('kakuro')">Kakuro</button>
+        <button class="game-btn" onclick="showGame('slitherlink')">Loop the Loop</button>
+    </div>
+
+    <!-- Sudoku Game -->
+    <div class="game-container" id="sudoku-game">
+        <div class="back-btn" onclick="showMainMenu()">← Back</div>
+        <table class="sudoku-grid"></table>
+    </div>
+
+    <!-- Kakuro Game -->
+    <div class="game-container" id="kakuro-game">
+        <div class="back-btn" onclick="showMainMenu()">← Back</div>
+        <table class="kakuro-grid"></table>
+    </div>
+
+    <!-- Slitherlink Game -->
+    <div class="game-container" id="slitherlink-game">
+        <div class="back-btn" onclick="showMainMenu()">← Back</div>
+        <div class="slitherlink-grid"></div>
+    </div>
+
+    <script>
+        // Game Navigation
+        function showGame(game) {
+            document.querySelectorAll('.game-container').forEach(el => el.style.display = 'none');
+            document.getElementById(`${game}-game`).style.display = 'block';
+            document.getElementById('main-menu').style.display = 'none';
+            initializeGame(game);
+        }
+
+        function showMainMenu() {
+            document.querySelectorAll('.game-container').forEach(el => el.style.display = 'none');
+            document.getElementById('main-menu').style.display = 'block';
+        }
+
+        // Game Initializers
+        function initializeGame(game) {
+            switch(game) {
+                case 'sudoku':
+                    initSudoku();
+                    break;
+                case 'kakuro':
+                    initKakuro();
+                    break;
+                case 'slitherlink':
+                    initSlitherlink();
+                    break;
+            }
+        }
+
+        // Sudoku Implementation
+        function initSudoku() {
+            const grid = document.querySelector('.sudoku-grid');
+            // Add Sudoku initialization logic here
+        }
+
+        // Kakuro Implementation
+        function initKakuro() {
+            const grid = document.querySelector('.kakuro-grid');
+            // Add Kakuro initialization logic here
+        }
+
+        // Slitherlink Implementation
+        function initSlitherlink() {
+            const grid = document.querySelector('.slitherlink-grid');
+            // Add Slitherlink initialization logic here
+        }
+
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load any saved games
+        });
+    </script>
+</body>
+</html>
